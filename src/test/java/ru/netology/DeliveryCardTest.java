@@ -32,38 +32,23 @@ public class DeliveryCardTest {
     public void shouldDeliveryCardOfTheNextDay() {
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(3, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(3, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Лиукконен Максим");
         $("[name='phone']").setValue("+79819715780");
         $("[class='checkbox__box']").click();
         $("[class='button__content']").click();
         $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(15));
-        $("[class='notification__content']").shouldBe(visible).shouldHave(exactText("Встреча успешно забронирована на " + Date));
+        $("[class='notification__content']").shouldBe(visible).shouldHave(exactText("Встреча успешно забронирована на " + date));
     }
 
-
-    @Test
-    public void shouldDeliveryCardOfSearchTownByTwoLetters() {
-        $("[placeholder='Город']").setValue("Са");
-        $(byText("Санкт-Петербург")).click();
-        $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(7, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
-        $("[name='name']").setValue("Лиукконен Максим");
-        $("[name='phone']").setValue("+79819715780");
-        $("[class='checkbox__box']").click();
-        $("[class='button__content']").click();
-        $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(15));
-        $("[class='notification__content']").shouldBe(visible).shouldHave(exactText("Встреча успешно забронирована на " + Date));
-    }
 
     @Test
     public void shouldDeliveryCardOfToday() {
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(0, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(0, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Лиукконен Максим");
         $("[name='phone']").setValue("+79819715780");
         $("[class='checkbox__box']").click();
@@ -75,8 +60,8 @@ public class DeliveryCardTest {
     public void shouldDeliveryCardOfInvalidTown() {
         $("[placeholder='Город']").setValue("Sankt-Peterburg");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(3, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(3, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Лиукконен Максим");
         $("[name='phone']").setValue("+79819715780");
         $("[class='checkbox__box']").click();
@@ -88,8 +73,8 @@ public class DeliveryCardTest {
     public void shouldDeliveryCardOfInvalidName() {
         $("[placeholder='Город']").setValue("Мурманск");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(3, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(3, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Liukonen Maksim");
         $("[name='phone']").setValue("+79819715780");
         $("[class='checkbox__box']").click();
@@ -102,8 +87,8 @@ public class DeliveryCardTest {
     public void shouldDeliveryCardOfInvalidPhone() {
         $("[placeholder='Город']").setValue("Мурманск");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(3, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(3, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Лиукконен Максим");
         $("[name='phone']").setValue("+7(981)9715780");
         $("[class='checkbox__box']").click();
@@ -116,13 +101,28 @@ public class DeliveryCardTest {
     public void shouldDeliveryCardWithEmptyChekBox() {
         $("[placeholder='Город']").setValue("Мурманск");
         $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
-        String Date = planDate(3, "dd.MM.yyyy");
-        $("[data-test-id=date] input").setValue(Date);
+        String date = planDate(3, "dd.MM.yyyy");
+        $("[data-test-id=date] input").setValue(date);
         $("[name='name']").setValue("Лиукконен Максим");
         $("[name='phone']").setValue("+79819715780");
         $("[class='button__content']").click();
         $(".input_invalid[data-test-id='agreement']").shouldBe(visible);
     }
+
+//    @Test
+//    public void shouldDeliveryCardOfSearchTownByTwoLetters() {
+//        $("[placeholder='Город']").setValue("Са");
+//        $(byText("Санкт-Петербург")).click();
+//        $("[data-test-id='date'] input").doubleClick().sendKeys(BACK_SPACE);
+//        String date = planDate(7, "dd.MM.yyyy");
+//        $("[data-test-id=date] input").setValue(date);
+//        $("[name='name']").setValue("Лиукконен Максим");
+//        $("[name='phone']").setValue("+79819715780");
+//        $("[class='checkbox__box']").click();
+//        $("[class='button__content']").click();
+//        $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(15));
+//        $("[class='notification__content']").shouldBe(visible).shouldHave(exactText("Встреча успешно забронирована на " + date));
+//    }
 
 
 }
